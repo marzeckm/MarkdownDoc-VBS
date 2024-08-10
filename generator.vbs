@@ -139,8 +139,13 @@ Class Main
         End If
     End Sub
 
+    '! Deletes all the old files from /dist
     '! 
-    Sub DeleteFilesAndFolders(folderPath)
+    '! @private @function DeleteFilesAndFolders
+    '! @param { string } folderPath
+    '! @return { void }
+    '! 
+    Private Sub DeleteFilesAndFolders(folderPath)
         Dim objFolder, objFile, objSubFolder
         
         If objFSO.FolderExists(folderPath) Then
@@ -161,8 +166,14 @@ Class Main
         End If
     End Sub
 
-    '!
-    Sub CopyAllFilesAndFolders(folderPath, targetPath)
+    '! Copies all the files from /src to /dist
+    '! 
+    '! @private @function CopyAllFilesAndFolders
+    '! @param { string } folderPath
+    '! @param { string } targetPath
+    '! @return { void }
+    '! 
+    Private Sub CopyAllFilesAndFolders(folderPath, targetPath)
         Dim objShell
         Set objShell = CreateObject("WScript.Shell")
 
@@ -302,6 +313,7 @@ Class Transpiler
         line = processHeaders(line)
         line = processImages(line)
         line = processLinks(line)
+        line = processBoldItalic(line)
         line = processBold(line)
         line = processItalic(line)
         line = processCode(line)
@@ -400,6 +412,33 @@ Class Transpiler
             End If
         Loop
         processImages = line
+    End Function
+
+    '! Processes bold-italic elements from markdown to html
+    '!
+    '! @private @function processBoldItalic
+    '! @param { string } line
+    '! @return { string }
+    '!
+    Private Function processBoldItalic(line)
+        Do
+            Dim boldItalicStart, boldItalicEnd, boldItalicText
+            
+            boldItalicStart = InStr(line, "***")
+            If boldItalicStart > 0 Then
+                boldItalicEnd = InStr(boldItalicStart + 3, line, "***")
+            Else
+                boldItalicEnd = 0
+            End If
+            
+            If boldItalicStart > 0 And boldItalicEnd > 0 Then
+                boldItalicText = Mid(line, boldItalicStart + 3, boldItalicEnd - boldItalicStart - 3)
+                line = Left(line, boldItalicStart - 1) & "<strong><em>" & boldItalicText & "</em></strong>" & Mid(line, boldItalicEnd + 3)
+            Else
+                Exit Do
+            End If
+        Loop
+        processBoldItalic = line
     End Function
 
     '! Processes bold elements from markdown to html
