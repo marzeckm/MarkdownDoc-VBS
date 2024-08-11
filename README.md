@@ -35,14 +35,14 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis officia distinc
 ```
   
 ### Bold Text
-To make text bold, surround the text with two asterisks (`**`). This will be converted into <strong> tags in HTML.
+To make text bold, surround the text with two asterisks (`**`). This will be converted into `<strong>` tags in HTML.
   
 ```
 This is normal text, but **here the text is bold**.
 ```
   
 ### Italic Text
-Similarly, to italicize text, use one asterisk (`*`) on each side of the text. This will be converted into <em> tags in HTML.
+Similarly, to italicize text, use one asterisk (`*`) on each side of the text. This will be converted into `<em>` tags in HTML.
   
 ```
 This is normal text, but *here the text is italic*.
@@ -118,7 +118,7 @@ cd "C://Path/To/The/Generator/"
   
 Make sure to replace `"C://Path/To/The/Generator/"` with the actual path to your script.
   
-For older versions like Windows 98, ME, 2000, XP, and Vista, you may need to run the script using `Cscript`. While the script will work without `Cscript`, you won’t see the program’s output. To run it with `Cscript`, use the following command:
+For older versions like Windows 98, ME, 2000, XP, and Vista, you may need to run the script using `Cscript`. While the script will work without `Cscript`, you won’t see the program’s output. To run it with `Cscript`, use the following command in CMD or MS-DOS Command Prompt (Windows 98):
   
 ```
 cd "C://Path/To/The/Generator/"
@@ -138,7 +138,7 @@ For Windows 7, 8, and 8.1, you can use Internet Explorer 11 or supported version
 On Windows Vista or XP, you can use the Supermium (based on Chromium) or MyPal (based on Firefox) browsers, which support these older systems.
   
 #### Windows 2000, Windows ME, Windows 98
-To view the documentation on a Windows 2000 machine, you can use K-Meleon 74. For instructions on installing it, [see this guide](http://kmeleonbrowser.org/wiki/InstallerForWindows2000). On Windows ME and 98, you can use K-Meleon 1.5.4 without kernel extension. [Here's how to install it](http://kmeleonbrowser.org/wiki/InstallerForWindows98).
+To view the documentation on a Windows 2000 machine, you can use K-Meleon 74. For instructions on installing it, [see this guide](http://kmeleonbrowser.org/wiki/InstallerForWindows2000). On Windows ME and 98, you can use K-Meleon 1.5.4 without kernel extension. [Here's how to install it](http://kmeleonbrowser.org/wiki/InstallerForWindows98). Note that still not all required features will be supported by K-Meleon 1.5.4 on Windows 98 and Windows ME. 
   
 ## Requirements
 - Text-Editor for editing the code files

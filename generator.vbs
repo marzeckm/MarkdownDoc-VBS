@@ -21,7 +21,7 @@ Class Main
         If objFSO.FolderExists("./dist/") Then
             DeleteFilesAndFolders "./dist"
         End If
-        CopyAllFilesAndFolders "./src", "./dist"
+        CopyAllFilesAndFolders ".\src", ".\dist"
 
         ' create transpiler object
         Set objTranspiler = new Transpiler
@@ -33,8 +33,17 @@ Class Main
         End If
 
         ' blocks automatic closing
-        WScript.echo vbCrLf & "Transpiling successfull. Press Enter to exit..."
-        WScript.StdIn.ReadLine()
+        On Error Resume Next
+        hasStdIn = Not IsEmpty(WScript.StdIn)
+        On Error GoTo 0
+
+        If hasStdIn Then
+            ' Dieser Code wird nur ausgeführt, wenn WScript.StdIn vorhanden ist
+            WScript.Echo vbCrLf & "Transpiling successful. Press Enter to exit..."
+            WScript.StdIn.ReadLine()
+        Else
+            WScript.Echo "Transpiling successful. Program will stop automatically."
+        End If
     End Sub
 
     '! Reads a requested file and returns it as array of lines
@@ -184,7 +193,7 @@ Class Main
 
         ' copy the whole folder
         objMain.PrintInfo("Copying folder """ & folderPath & """ to """ & targetPath & """")
-        objShell.Run ("xcopy """ & folderPath & """ """ & targetPath & """ /E /I /Y"), 1, True
+        objShell.Run ("xcopy """ & folderPath & "\*"" """ & targetPath & """ /E /I /Y"), 1, True
 
         ' delete index.md, if copied
         If(objFSO.FileExists("./dist/index.md")) Then
